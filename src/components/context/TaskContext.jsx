@@ -36,6 +36,7 @@ const TaskProvider = ({ children }) => {
         getIdTask,
         setGetIdTask,
         tasks,
+        setTasks,
         fetchTask,
         upDateTaskField,
         toggleEdit,

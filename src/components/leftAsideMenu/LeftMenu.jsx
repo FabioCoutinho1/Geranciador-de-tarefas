@@ -1,18 +1,19 @@
 import { useContext } from "react";
 import { TaskContext } from "../context/TaskContext";
-import { MdClose, MdStarOutline } from "react-icons/md";
+import { MdClose, MdStarOutline, MdDensitySmall } from "react-icons/md";
 import FormSearch from "./FormSearch";
 import MoreOpitions from "../layouts/MoreOpitions";
 
 const LeftMenu = () => {
-  const { toggleLeftMenu, setToggleLeftMenu, setShowPageFavorite } = useContext(TaskContext);
+  const { toggleLeftMenu, setToggleLeftMenu, setShowPageFavorite } =
+    useContext(TaskContext);
 
   const closLeftMenu = () => {
     setToggleLeftMenu(false);
   };
 
   const showFavorites = () => {
-    setShowPageFavorite(true)
+    setShowPageFavorite(true);
   };
 
   return (
@@ -29,6 +30,12 @@ const LeftMenu = () => {
         <FormSearch />
 
         <div>
+          <MoreOpitions
+            icon={MdDensitySmall}
+            opitionName={"Todas Tarefas"}
+            colorIcon="text-gray-400"
+            onClick={showFavorites}
+          />
           <MoreOpitions
             icon={MdStarOutline}
             opitionName={"Favoritas"}
