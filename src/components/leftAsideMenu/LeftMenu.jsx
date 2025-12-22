@@ -5,15 +5,21 @@ import FormSearch from "./FormSearch";
 import MoreOpitions from "../layouts/MoreOpitions";
 
 const LeftMenu = () => {
-  const { toggleLeftMenu, setToggleLeftMenu, setShowPageFavorite } =
+  const { toggleLeftMenu, setFilter, setToggleLeftMenu } =
     useContext(TaskContext);
 
   const closLeftMenu = () => {
     setToggleLeftMenu(false);
   };
 
-  const showFavorites = () => {
-    setShowPageFavorite(true);
+  const showInpontant = () => {
+    setFilter("inportante");
+    setToggleLeftMenu(false);
+  };
+
+  const showAll = () => {
+    setFilter("all");
+    setToggleLeftMenu(false);
   };
 
   return (
@@ -34,13 +40,13 @@ const LeftMenu = () => {
             icon={MdDensitySmall}
             opitionName={"Todas Tarefas"}
             colorIcon="text-gray-400"
-            onClick={showFavorites}
+            onClick={showAll}
           />
           <MoreOpitions
             icon={MdStarOutline}
             opitionName={"Favoritas"}
             colorIcon="text-pink-400"
-            onClick={showFavorites}
+            onClick={showInpontant}
           />
         </div>
       </aside>

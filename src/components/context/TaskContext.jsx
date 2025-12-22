@@ -3,11 +3,12 @@ import { createContext, useState } from "react";
 export const TaskContext = createContext();
 
 const TaskProvider = ({ children }) => {
+  const [filter, setFilter] = useState("all");
   const [getIdTask, setGetIdTask] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [toggleEdit, setToggleEdit] = useState(true);
   const [toggleLeftMenu, setToggleLeftMenu] = useState(false);
-  const [showPageFavorite, setShowPageFavorite]=useState(false)
+  const [showPageFavorite, setShowPageFavorite] = useState(false);
 
   const fetchTask = async () => {
     const res = await fetch("http://localhost:3000/tasks");
@@ -37,6 +38,8 @@ const TaskProvider = ({ children }) => {
         setGetIdTask,
         tasks,
         setTasks,
+        filter,
+        setFilter,
         fetchTask,
         upDateTaskField,
         toggleEdit,
@@ -44,7 +47,7 @@ const TaskProvider = ({ children }) => {
         toggleLeftMenu,
         setToggleLeftMenu,
         showPageFavorite,
-        setShowPageFavorite
+        setShowPageFavorite,
       }}
     >
       {children}

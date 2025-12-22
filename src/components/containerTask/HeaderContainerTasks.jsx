@@ -10,7 +10,7 @@ const HeaderContainerTasks = () => {
   };
 
   return (
-    <header className="text-white flex mb-4 z-10">
+    <header className="text-white flex mb-4">
       <div className=" cursor-default">
         <MdOutlineMenu
           onClick={handleToggleLeftMenu}

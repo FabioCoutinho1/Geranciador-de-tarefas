@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import BoxTasks from "./BoxTasks";
 import BoxTasksDone from "./BoxTasksDone";
 import InputTasks from "./InputTasks";
@@ -6,15 +6,25 @@ import HeaderContainerTasks from "./HeaderContainerTasks";
 
 import { useContext } from "react";
 import { TaskContext } from "../context/TaskContext";
-import FavoritPage from "./FavoritPage";
 
 const ContainerBoxTask = () => {
-  const { tasks, showPageFavorite, fetchTask, toggleLeftMenu } =
-    useContext(TaskContext);
+  const { tasks, filter, fetchTask, toggleLeftMenu } = useContext(TaskContext);
+
+  const filterTasks = useMemo(() => {
+    if (filter === "all") {
+      return tasks;
+    }
+
+    return tasks.filter((el) => el.favorit);
+  }, [filter, tasks]);
 
   useEffect(() => {
     fetchTask();
   }, []);
+
+  // const sortInportante = [...filterTasks].sort(
+  //   (a, b) => Number(b.favorit) - Number(a.favorit)
+  // );
 
   return (
     <div
@@ -23,9 +33,8 @@ const ContainerBoxTask = () => {
       } `}
     >
       <HeaderContainerTasks />
-      <BoxTasksDone tasks={tasks} />
-      {showPageFavorite ? <FavoritPage /> : <BoxTasks tasks={tasks} /> }
-
+      <BoxTasks tasks={filterTasks} />
+      <BoxTasksDone tasks={filterTasks} />
       <InputTasks onTaskCreate={fetchTask} />
     </div>
   );
