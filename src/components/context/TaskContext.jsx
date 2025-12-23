@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const TaskContext = createContext();
 
@@ -8,7 +8,7 @@ const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
   const [toggleEdit, setToggleEdit] = useState(true);
   const [toggleLeftMenu, setToggleLeftMenu] = useState(false);
-  const [showPageFavorite, setShowPageFavorite] = useState(false);
+  const [toggleRightMenu, setToggleRightMenu] = useState(false);
 
   const fetchTask = async () => {
     const res = await fetch("http://localhost:3000/tasks");
@@ -31,6 +31,12 @@ const TaskProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    if (getIdTask !== null) {
+      setToggleRightMenu(true);
+    }
+  }, [getIdTask]);
+
   return (
     <TaskContext.Provider
       value={{
@@ -46,8 +52,8 @@ const TaskProvider = ({ children }) => {
         setToggleEdit,
         toggleLeftMenu,
         setToggleLeftMenu,
-        showPageFavorite,
-        setShowPageFavorite,
+        toggleRightMenu,
+        setToggleRightMenu,
       }}
     >
       {children}

@@ -5,7 +5,8 @@ import { MdOutlineMenu } from "react-icons/md";
 const HeaderContainerTasks = () => {
   const { setToggleLeftMenu } = useContext(TaskContext);
 
-  const handleToggleLeftMenu = () => {
+  const handleToggleLeftMenu = (e) => {
+    e.stopPropagation();
     setToggleLeftMenu(true);
   };
 

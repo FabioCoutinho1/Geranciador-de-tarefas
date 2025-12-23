@@ -13,7 +13,8 @@ import Task from "../containerTask/Task";
 import Button from "../layouts/Button";
 
 const ViwerMoreOpitoinsTasks = ({ task, handleEdit }) => {
-  const { fetchTask, setGetIdTask } = useContext(TaskContext);
+  const { fetchTask, setGetIdTask, setToggleRightMenu } =
+    useContext(TaskContext);
 
   const getTaskIcon = (done) => (done ? MdCheckCircle : MdOutlineCircle);
 
@@ -34,6 +35,7 @@ const ViwerMoreOpitoinsTasks = ({ task, handleEdit }) => {
   };
 
   const closeRightMenu = () => {
+    setToggleRightMenu(false);
     setGetIdTask(null);
   };
 

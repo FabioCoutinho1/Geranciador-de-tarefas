@@ -9,14 +9,14 @@
     {
       "id": "df66bb0a-71c0-45cc-b1e0-7accade2e994",
       "taskName": "fasdfadfasdfasdfasd",
-      "checkend": false,
-      "favorit": false
+      "checkend": true,
+      "favorit": true
     },
     {
       "id": "f5c6bdcf-7352-4154-b2a3-8caa4682a655",
       "taskName": "fadsfadfasdf asd f fd",
-      "checkend": true,
-      "favorit": true
+      "checkend": false,
+      "favorit": false
     },
     {
       "id": "79b8c117-80fe-430d-b6e1-d179c1ebbb5e",

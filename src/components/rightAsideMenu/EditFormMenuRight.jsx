@@ -40,7 +40,6 @@ const EditFormMenuRigth = ({ task }) => {
   const handleCancel = () => {
     setToggleEdit(true);
   };
-
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2  mt-2">
       <input
