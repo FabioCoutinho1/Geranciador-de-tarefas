@@ -16,7 +16,6 @@ const ContainerBoxTask = () => {
     setToggleLeftMenu,
     toggleRightMenu,
     setToggleRightMenu,
-    getTaskId,
   } = useContext(TaskContext);
 
   const filterTasks = useMemo(() => {
