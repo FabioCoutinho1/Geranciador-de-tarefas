@@ -16,6 +16,7 @@ const ContainerBoxTask = () => {
     setToggleLeftMenu,
     toggleRightMenu,
     setToggleRightMenu,
+    searchValueInput,
   } = useContext(TaskContext);
 
   const filterTasks = useMemo(() => {
@@ -25,6 +26,18 @@ const ContainerBoxTask = () => {
 
     return tasks.filter((el) => el.favorit);
   }, [filter, tasks]);
+
+  const searchFilter = useMemo(() => {
+    if (searchValueInput === "") {
+      console.log(searchValueInput);
+      return filterTasks;
+    }
+
+    return filterTasks.filter((el) => {
+      console.log(searchValueInput);
+      return el.taskName.trim().toLowerCase().includes(searchValueInput);
+    });
+  }, [filterTasks, searchValueInput]);
 
   useEffect(() => {
     fetchTask();
@@ -43,7 +56,7 @@ const ContainerBoxTask = () => {
     }
   };
 
-  const sortInportante = [...filterTasks].sort(
+  const sortInportante = [...searchFilter].sort(
     (a, b) => Number(b.favorit) - Number(a.favorit)
   );
 

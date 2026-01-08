@@ -9,6 +9,7 @@ const TaskProvider = ({ children }) => {
   const [toggleEdit, setToggleEdit] = useState(true);
   const [toggleLeftMenu, setToggleLeftMenu] = useState(false);
   const [toggleRightMenu, setToggleRightMenu] = useState(false);
+  const [searchValueInput, setSearchVelueInput] = useState("");
 
   const fetchTask = async () => {
     const res = await fetch("http://localhost:3000/tasks");
@@ -37,6 +38,10 @@ const TaskProvider = ({ children }) => {
     }
   }, [getIdTask]);
 
+  
+
+ 
+
   return (
     <TaskContext.Provider
       value={{
@@ -54,6 +59,8 @@ const TaskProvider = ({ children }) => {
         setToggleLeftMenu,
         toggleRightMenu,
         setToggleRightMenu,
+        searchValueInput,
+        setSearchVelueInput,
       }}
     >
       {children}
