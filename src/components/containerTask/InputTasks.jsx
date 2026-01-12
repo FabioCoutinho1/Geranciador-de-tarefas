@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef, useContext } from "react";
+import { taskServic } from "../services/taskServices";
 import { TaskContext } from "../context/TaskContext";
 import { MdAdd } from "react-icons/md";
 
@@ -6,6 +7,8 @@ const InputTasks = () => {
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef();
   const { fetchTask, tasks } = useContext(TaskContext);
+  const [createTask] = taskServic();
+  1;
 
   useEffect(() => {
     inputRef.current.focus();
@@ -35,25 +38,9 @@ const InputTasks = () => {
       favorit: false,
     };
 
-    try {
-      const res = await fetch("http://localhost:3000/tasks", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newTask),
-      });
-
-      if (!res.ok) {
-        throw new Error("Erro ao salvar a tarefa");
-      }
-      fetchTask();
-
-      setInputValue("");
-      inputRef.current.focus();
-    } catch (error) {
-      console.error(error);
-    }
+    createTask(newTask);
+    setInputValue("");
+    inputRef.current.focus();
   };
 
   return (

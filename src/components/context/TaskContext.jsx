@@ -11,26 +11,7 @@ const TaskProvider = ({ children }) => {
   const [toggleRightMenu, setToggleRightMenu] = useState(false);
   const [searchValueInput, setSearchVelueInput] = useState("");
 
-  const fetchTask = async () => {
-    const res = await fetch("http://localhost:3000/tasks");
-    const data = await res.json();
-    setTasks(data);
-  };
-
-  const upDateTaskField = async (field, value, id) => {
-    try {
-      const res = await fetch(`http://localhost:3000/tasks/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Contente-Type": "application/json",
-        },
-        body: JSON.stringify({ [field]: value }),
-      });
-      fetchTask();
-    } catch (erro) {
-      console.error(erro);
-    }
-  };
+  
 
   useEffect(() => {
     if (getIdTask !== null) {
@@ -51,8 +32,6 @@ const TaskProvider = ({ children }) => {
         setTasks,
         filter,
         setFilter,
-        fetchTask,
-        upDateTaskField,
         toggleEdit,
         setToggleEdit,
         toggleLeftMenu,
