@@ -1,22 +1,25 @@
 import { useContext } from "react";
 import { TaskContext } from "../context/TaskContext";
+import { useTask } from "../hooks/useTask";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 
 const Task = ({ task, icon: Icon }) => {
-  const { upDateTaskField, setGetIdTask } = useContext(TaskContext);
+  const { setGetIdTask } = useContext(TaskContext);
+  const { upDataTask } = useTask();
 
   const handleToggleCheck = async (e) => {
     e.stopPropagation();
-    upDateTaskField("checkend", !task.checkend, task.id);
+    upDataTask("checkend", !task.checkend, task.id);
   };
 
-  const handleToggleFavorit = (e) => {
+  const handleToggleFavorit = async (e) => {
     e.stopPropagation();
-    upDateTaskField("favorit", !task.favorit, task.id);
+    upDataTask("favorit", !task.favorit, task.id);
   };
 
   const handleClick = () => {
     setGetIdTask(task.id);
+    console.log("Foi clicado");
   };
 
   return (

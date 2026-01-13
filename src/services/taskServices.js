@@ -1,5 +1,5 @@
-export function taskServic() {
-  const createTask = async (newTask) => {
+export const taskServic = {
+  createTask: async (newTask) => {
     try {
       const res = await fetch("http://localhost:3000/tasks", {
         method: "POST",
@@ -12,18 +12,19 @@ export function taskServic() {
       if (!res.ok) {
         throw new Error("Erro ao salvar a tarefa");
       }
-      getTask();
+
+      return await res.json();
     } catch (error) {
       console.error(error);
     }
-  };
+  },
 
-  const getTask = async () => {
+  getTask: async () => {
     const res = await fetch("http://localhost:3000/tasks");
     return await res.json();
-  };
+  },
 
-  const upDateTaskField = async (field, value, id) => {
+  upDateTaskField: async (field, value, id) => {
     try {
       const res = await fetch(`http://localhost:3000/tasks/${id}`, {
         method: "PATCH",
@@ -32,11 +33,23 @@ export function taskServic() {
         },
         body: JSON.stringify({ [field]: value }),
       });
-      getTask();
+      return await res.json();
     } catch (erro) {
       console.error(erro);
     }
-  };
+  },
 
-  return [createTask, getTask, upDateTaskField];
-}
+  Delete: async (id) => {
+    try {
+      const res = await fetch(`http://localhost:3000/tasks/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return await res.json();
+    } catch (erro) {
+      console.log(erro);
+    }
+  },
+};

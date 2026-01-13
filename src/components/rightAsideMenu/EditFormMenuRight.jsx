@@ -1,12 +1,14 @@
 import { MdSave, MdCancelPresentation } from "react-icons/md";
 import { useContext, useRef, useEffect, useState } from "react";
 import { TaskContext } from "../context/TaskContext";
+import { useTask } from "../hooks/useTask";
 import Button from "../layouts/Button";
 
 const EditFormMenuRigth = ({ task }) => {
-  const { upDateTaskField, setToggleEdit, tasks } = useContext(TaskContext);
+  const { setToggleEdit, tasks } = useContext(TaskContext);
   const inputRef = useRef();
   const [inputValue, setInputValue] = useState(task.taskName || "");
+  const { upDataTask } = useTask();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -32,7 +34,7 @@ const EditFormMenuRigth = ({ task }) => {
       return alert("o nome nao pode ser o mesmo");
     }
 
-    upDateTaskField("taskName", name, task.id);
+    upDataTask("taskName", name, task.id);
 
     setToggleEdit(true);
   };

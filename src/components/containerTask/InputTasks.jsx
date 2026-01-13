@@ -1,14 +1,11 @@
-import { useEffect, useState, useRef, useContext } from "react";
-import { taskServic } from "../services/taskServices";
-import { TaskContext } from "../context/TaskContext";
+import { useEffect, useState, useRef } from "react";
+import { useTask } from "../hooks/useTask";
 import { MdAdd } from "react-icons/md";
 
 const InputTasks = () => {
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef();
-  const { fetchTask, tasks } = useContext(TaskContext);
-  const [createTask] = taskServic();
-  1;
+  const { createNewTask, tasks } = useTask();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -38,7 +35,7 @@ const InputTasks = () => {
       favorit: false,
     };
 
-    createTask(newTask);
+    createNewTask(newTask);
     setInputValue("");
     inputRef.current.focus();
   };

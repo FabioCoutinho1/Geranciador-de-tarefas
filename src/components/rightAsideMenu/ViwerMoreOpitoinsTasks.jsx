@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { TaskContext } from "../context/TaskContext";
+import { useTask } from "../hooks/useTask";
 
 import {
   MdOutlineDelete,
@@ -13,30 +14,20 @@ import Task from "../containerTask/Task";
 import Button from "../layouts/Button";
 
 const ViwerMoreOpitoinsTasks = ({ task, handleEdit }) => {
-  const { fetchTask, setGetIdTask, setToggleRightMenu } =
-    useContext(TaskContext);
+  const { setGetIdTask, setToggleRightMenu } = useContext(TaskContext);
+  const { deleteTask } = useTask();
 
   const getTaskIcon = (done) => (done ? MdCheckCircle : MdOutlineCircle);
-
-  const handleDelete = async () => {
-    try {
-      const res = await fetch(`http://localhost:3000/tasks/${task.id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      setGetIdTask(null);
-      fetchTask();
-    } catch (erro) {
-      console.log(erro);
-    }
-  };
 
   const closeRightMenu = () => {
     setToggleRightMenu(false);
     setGetIdTask(null);
+  };
+
+  const handleDelete = async () => {
+    deleteTask(task.id);
+    setGetIdTask(null);
+    setToggleRightMenu(false);
   };
 
   return (

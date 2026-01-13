@@ -3,21 +3,25 @@ import BoxTasks from "./BoxTasks";
 import BoxTasksDone from "./BoxTasksDone";
 import InputTasks from "./InputTasks";
 import HeaderContainerTasks from "./HeaderContainerTasks";
-
+import { useTask } from "../hooks/useTask";
 import { useContext } from "react";
 import { TaskContext } from "../context/TaskContext";
 
 const ContainerBoxTask = () => {
   const {
-    tasks,
-    filter,
-    fetchTask,
     toggleLeftMenu,
     setToggleLeftMenu,
+    setGetIdTask,
     toggleRightMenu,
     setToggleRightMenu,
     searchValueInput,
   } = useContext(TaskContext);
+
+  const { loadTask, tasks, filter } = useTask();
+
+  useEffect(() => {
+    loadTask();
+  }, []);
 
   const filterTasks = useMemo(() => {
     if (filter === "all") {
@@ -29,36 +33,29 @@ const ContainerBoxTask = () => {
 
   const searchFilter = useMemo(() => {
     if (searchValueInput === "") {
-      console.log(searchValueInput);
       return filterTasks;
     }
 
     return filterTasks.filter((el) => {
-      console.log(searchValueInput);
       return el.taskName.trim().toLowerCase().includes(searchValueInput);
     });
   }, [filterTasks, searchValueInput]);
 
-  useEffect(() => {
-    fetchTask();
-  }, []);
-
+  const sortInportante = [...searchFilter].sort(
+    (a, b) => Number(b.favorit) - Number(a.favorit)
+  );
   const closeMenus = (e) => {
     e.stopPropagation();
-    console.log(e.target);
 
     if (toggleLeftMenu) {
       setToggleLeftMenu(false);
     }
 
     if (toggleRightMenu) {
+      setGetIdTask(null);
       setToggleRightMenu(false);
     }
   };
-
-  const sortInportante = [...searchFilter].sort(
-    (a, b) => Number(b.favorit) - Number(a.favorit)
-  );
 
   return (
     <div
@@ -70,7 +67,7 @@ const ContainerBoxTask = () => {
       <HeaderContainerTasks />
       <BoxTasks tasks={sortInportante} />
       <BoxTasksDone tasks={sortInportante} />
-      <InputTasks onTaskCreate={fetchTask} />
+      <InputTasks />
     </div>
   );
 };

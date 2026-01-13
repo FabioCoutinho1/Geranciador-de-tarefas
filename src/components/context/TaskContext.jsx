@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { taskServic } from "../../services/taskServices";
 
 export const TaskContext = createContext();
 
@@ -11,17 +12,11 @@ const TaskProvider = ({ children }) => {
   const [toggleRightMenu, setToggleRightMenu] = useState(false);
   const [searchValueInput, setSearchVelueInput] = useState("");
 
-  
-
   useEffect(() => {
     if (getIdTask !== null) {
       setToggleRightMenu(true);
     }
   }, [getIdTask]);
-
-  
-
- 
 
   return (
     <TaskContext.Provider
