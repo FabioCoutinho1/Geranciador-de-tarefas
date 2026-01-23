@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { getDate } from "../../utils/getDate";
 import { useTask } from "../hooks/useTask";
 import { MdAdd } from "react-icons/md";
 
@@ -15,6 +16,7 @@ const InputTasks = () => {
     e.preventDefault();
 
     const name = inputValue.trim();
+    const date = getDate.dateSendServe();
 
     const isDuplicated = tasks.some(
       (task) => task.taskName.toLowerCase() === name.toLowerCase()
@@ -33,6 +35,7 @@ const InputTasks = () => {
       taskName: name,
       checkend: false,
       favorit: false,
+      createDate: date,
     };
 
     createNewTask(newTask);

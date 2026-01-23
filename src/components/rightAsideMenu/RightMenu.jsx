@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { TaskContext } from "../context/TaskContext";
 import ViwerMoreOpitoinsTasks from "./ViwerMoreOpitoinsTasks";
 import EditFormMenuRight from "./EditFormMenuRight";
@@ -6,7 +6,6 @@ import EditFormMenuRight from "./EditFormMenuRight";
 const RightMenu = () => {
   const { getIdTask, tasks, toggleEdit, setToggleEdit, toggleRightMenu } =
     useContext(TaskContext);
-
   const task = tasks.find((element) => element.id === getIdTask);
   const handleEdit = () => {
     setToggleEdit(false);
@@ -20,12 +19,13 @@ const RightMenu = () => {
           toggleRightMenu ? "translate-x-0 " : "translate-x-full  "
         }`}
     >
-      <div className="flex justify-end p-2"></div>
-      {toggleEdit ? (
-        <ViwerMoreOpitoinsTasks task={task} handleEdit={handleEdit} />
-      ) : (
-        <EditFormMenuRight task={task} toggleEdit={toggleEdit} />
-      )}
+      <div className="flex flex-1 justify-end flex-col">
+        {toggleEdit ? (
+          <ViwerMoreOpitoinsTasks task={task} handleEdit={handleEdit} />
+        ) : (
+          <EditFormMenuRight task={task} toggleEdit={toggleEdit} />
+        )}
+      </div>
     </aside>
   );
 };

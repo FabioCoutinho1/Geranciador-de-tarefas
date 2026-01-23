@@ -12,6 +12,7 @@ const ContainerBoxTask = () => {
     toggleLeftMenu,
     setToggleLeftMenu,
     setGetIdTask,
+    getIdTask,
     toggleRightMenu,
     setToggleRightMenu,
     searchValueInput,
@@ -42,7 +43,7 @@ const ContainerBoxTask = () => {
   }, [filterTasks, searchValueInput]);
 
   const sortInportante = [...searchFilter].sort(
-    (a, b) => Number(b.favorit) - Number(a.favorit)
+    (a, b) => Number(b.favorit) - Number(a.favorit),
   );
   const closeMenus = (e) => {
     e.stopPropagation();
@@ -51,10 +52,10 @@ const ContainerBoxTask = () => {
       setToggleLeftMenu(false);
     }
 
-    if (toggleRightMenu) {
-      setGetIdTask(null);
-      setToggleRightMenu(false);
-    }
+    // if (toggleRightMenu && getIdTask !== null) {
+    //   setGetIdTask(null);
+    //   setToggleRightMenu(false);
+    // }
   };
 
   return (
