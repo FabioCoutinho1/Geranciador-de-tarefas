@@ -2,7 +2,7 @@ import { MdSave, MdCancelPresentation } from "react-icons/md";
 import { useContext, useRef, useEffect, useState } from "react";
 import { TaskContext } from "../context/TaskContext";
 import { useTask } from "../hooks/useTask";
-import Button from "../layouts/Button";
+import Button from "../ui/Button";
 
 const EditFormMenuRigth = ({ task }) => {
   const { setToggleEdit, tasks } = useContext(TaskContext);

@@ -1,17 +1,18 @@
 import { taskServic } from "../../services/taskServices";
 import { useContext, useState } from "react";
 import { TaskContext } from "../context/TaskContext";
+import { useToast } from "./useToast";
 
 export const useTask = () => {
-  const { tasks, setTasks, filter, setGetIdTask } = useContext(TaskContext);
-  const [error, setError] = useState("");
+  const { tasks, setTasks, filter } = useContext(TaskContext);
+  const { showMsg } = useToast();
 
   const loadTask = async () => {
     try {
       const data = await taskServic.getTask();
       setTasks(data);
     } catch (err) {
-      setError("Não foi Possivel carregar as tarefas");
+      alert("Não foi Possivel carregar as tarefas");
     }
   };
 
@@ -19,8 +20,9 @@ export const useTask = () => {
     try {
       const newTask = await taskServic.createTask(name);
       setTasks((prevTask) => [...prevTask, newTask]);
+      showMsg("Tarefa adicionada com sucesso", "success");
     } catch (err) {
-      setError("Erro ao criar nova tarefa");
+      alert("Erro ao criar nova tarefa");
     }
   };
 
@@ -28,10 +30,10 @@ export const useTask = () => {
     try {
       const taskUpDate = await taskServic.upDateTaskField(field, value, id);
       setTasks((prevTask) =>
-        prevTask.map((el) => (el.id === id ? taskUpDate : el))
+        prevTask.map((el) => (el.id === id ? taskUpDate : el)),
       );
     } catch (err) {
-      setError("Erro ao atualizar a tarefa");
+      alert("Erro ao atualizar a tarefa");
     }
   };
 
@@ -40,13 +42,12 @@ export const useTask = () => {
       const newTask = await taskServic.Delete(id);
       setTasks((prevTask) => prevTask.filter((el) => el.id !== id));
     } catch (error) {
-      setError("Erro ao apagar a tarefa");
+      alert("Erro ao apagar a tarefa");
     }
   };
   return {
     tasks,
     filter,
-    error,
     createNewTask,
     loadTask,
     upDataTask,

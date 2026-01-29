@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import Toast from "../ui/Toast";
 
 export const TaskContext = createContext();
 
@@ -10,6 +11,7 @@ const TaskProvider = ({ children }) => {
   const [toggleLeftMenu, setToggleLeftMenu] = useState(false);
   const [toggleRightMenu, setToggleRightMenu] = useState(false);
   const [searchValueInput, setSearchVelueInput] = useState("");
+  const [message, setMessage] = useState({ text: "", type: "" });
 
   useEffect(() => {
     if (getIdTask !== null) {
@@ -34,9 +36,12 @@ const TaskProvider = ({ children }) => {
         setToggleRightMenu,
         searchValueInput,
         setSearchVelueInput,
+        message,
+        setMessage,
       }}
     >
       {children}
+      {message.text && <Toast text={message.text} type={message.type} />}
     </TaskContext.Provider>
   );
 };

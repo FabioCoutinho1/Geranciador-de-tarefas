@@ -12,7 +12,7 @@ import {
 } from "react-icons/md";
 
 import Task from "../containerTask/Task";
-import Button from "../layouts/Button";
+import Button from "../ui/Button";
 
 const ViwerMoreOpitoinsTasks = ({ task, handleEdit }) => {
   const { setGetIdTask, setToggleRightMenu } = useContext(TaskContext);
