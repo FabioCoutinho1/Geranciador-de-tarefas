@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-
+import { useContext } from "react";
 import { MdSearch } from "react-icons/md";
 import { TaskContext } from "../context/TaskContext";
 

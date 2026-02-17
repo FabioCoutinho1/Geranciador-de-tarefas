@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { TaskContext } from "../context/TaskContext";
 import { MdClose, MdStarOutline, MdDensitySmall } from "react-icons/md";
 import FormSearch from "./FormSearch";
-import MoreOpitions from "../layouts/MoreOpitions";
+import MoreOpitionsMenuLeft from "../ui/MoreOpitionsMenuLeft";
 
 const LeftMenu = () => {
   const { toggleLeftMenu, setFilter, setToggleLeftMenu } =
@@ -36,13 +36,13 @@ const LeftMenu = () => {
         <FormSearch />
 
         <div>
-          <MoreOpitions
+          <MoreOpitionsMenuLeft
             icon={MdDensitySmall}
             opitionName={"Todas Tarefas"}
             colorIcon="text-gray-400"
             onClick={showAll}
           />
-          <MoreOpitions
+          <MoreOpitionsMenuLeft
             icon={MdStarOutline}
             opitionName={"Favoritas"}
             colorIcon="text-pink-400"

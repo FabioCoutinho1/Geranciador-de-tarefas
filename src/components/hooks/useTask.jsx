@@ -22,7 +22,7 @@ export const useTask = () => {
       setTasks((prevTask) => [...prevTask, newTask]);
       showMsg("Tarefa adicionada com sucesso", "success");
     } catch (err) {
-      alert("Erro ao criar nova tarefa");
+      showMsg("Erro ao criar nova tarefa", "error");
     }
   };
 
@@ -32,8 +32,9 @@ export const useTask = () => {
       setTasks((prevTask) =>
         prevTask.map((el) => (el.id === id ? taskUpDate : el)),
       );
+      showMsg("Tarefa atualizada", "success")
     } catch (err) {
-      alert("Erro ao atualizar a tarefa");
+      showMsg("Erro ao atualizar a tarefa", "error");
     }
   };
 
@@ -41,8 +42,9 @@ export const useTask = () => {
     try {
       const newTask = await taskServic.Delete(id);
       setTasks((prevTask) => prevTask.filter((el) => el.id !== id));
+      showMsg("Tarefa Apagada", "success")
     } catch (error) {
-      alert("Erro ao apagar a tarefa");
+      showMsg("Erro ao apagar a tarefa", "error");
     }
   };
   return {
