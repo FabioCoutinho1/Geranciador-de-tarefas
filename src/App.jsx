@@ -1,7 +1,7 @@
 import "./App.css";
-import ContainerBoxTask from "./components/containerTask/ContainerBoxTask";
-import LeftMenu from "./components/leftAsideMenu/LeftMenu";
-import RightMenu from "./components/rightAsideMenu/RightMenu";
+import ContainerBoxTask from "./components/layouts/containerTask/ContainerBoxTask";
+import LeftMenu from "./components/layouts/leftAsideMenu/LeftMenu";
+import RightMenu from "./components/layouts/rightAsideMenu/RightMenu";
 
 function App() {
   return (
