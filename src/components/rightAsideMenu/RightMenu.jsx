@@ -14,12 +14,12 @@ const RightMenu = () => {
   return (
     <aside
       className={` 
-        fixed top-0 right-0 h-full w-screen flex flex-col text-white 
+        fixed top-0 right-0 h-full w-screen flex flex-col  text-white 
         p-2 bg-stone-900 transition-all duration-300 sm:w-64   ${
           toggleRightMenu ? "translate-x-0 " : "translate-x-full  "
         }`}
     >
-      <div className="flex flex-1 justify-end flex-col">
+      <div className="flex flex-1 flex-col justify-start">
         {toggleEdit ? (
           <ViwerMoreOpitoinsTasks task={task} handleEdit={handleEdit} />
         ) : (
