@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { TaskContext } from "../../context/TaskContext";
-import { useTask } from "../../hooks/useTask";
+import { TaskContext } from "../../../context/TaskContext";
+import { useTask } from "../../../hooks/useTask";
 import { getDate } from "../../../utils/getDate";
 import Task from "../../layouts/containerTask/Task";
 import Button from "../../ui/Button";

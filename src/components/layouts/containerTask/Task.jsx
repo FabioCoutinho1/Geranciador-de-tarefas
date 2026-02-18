@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { TaskContext } from "../../context/TaskContext";
-import { useTask } from "../../hooks/useTask";
+import { TaskContext } from "../../../context/TaskContext";
+import { useTask } from "../../../hooks/useTask";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 
 const Task = ({ task, icon: Icon }) => {

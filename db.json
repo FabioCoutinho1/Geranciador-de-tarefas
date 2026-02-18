@@ -31,7 +31,7 @@
     {
       "id": "95af6c14-d311-4d11-8430-e0fc9b66358b",
       "taskName": "teste 3",
-      "checkend": true,
+      "checkend": false,
       "favorit": false,
       "createDate": "2026-02-07T14:25:26.432Z"
     },

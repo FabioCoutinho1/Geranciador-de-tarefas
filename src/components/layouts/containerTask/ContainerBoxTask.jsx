@@ -3,9 +3,9 @@ import BoxTasks from "./BoxTasks";
 import BoxTasksDone from "./BoxTasksDone";
 import InputTasks from "./InputTasks";
 import HeaderContainerTasks from "./HeaderContainerTasks";
-import { useTask } from "../../hooks/useTask";
+import { useTask } from "../../../hooks/useTask";
 import { useContext } from "react";
-import { TaskContext } from "../../context/TaskContext";
+import { TaskContext } from "../../../context/TaskContext";
 
 const ContainerBoxTask = () => {
   const {
