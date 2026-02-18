@@ -24,7 +24,7 @@
     {
       "id": "713ad97c-797f-475d-9c83-3f3b15e2a8c7",
       "taskName": "tfasdasdg",
-      "checkend": false,
+      "checkend": true,
       "favorit": false,
       "createDate": "2026-01-29T19:58:07.747Z"
     },
@@ -38,9 +38,16 @@
     {
       "id": "da64a371-1242-4e15-99b7-6907ea2c5e41",
       "taskName": "fadsfafas",
-      "checkend": true,
+      "checkend": false,
       "favorit": false,
       "createDate": "2026-02-17T23:33:33.327Z"
+    },
+    {
+      "id": "53998107-b819-4235-b8cb-9604113f43cf",
+      "taskName": "criar",
+      "checkend": true,
+      "favorit": false,
+      "createDate": "2026-02-18T14:27:34.971Z"
     }
   ]
 }
