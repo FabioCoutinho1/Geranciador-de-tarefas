@@ -39,7 +39,7 @@ const ViwerMoreOpitoinsTasks = ({ task, handleEdit }) => {
         />
       </div>
       {task ? (
-        <Task task={task} icon={getTaskIcon(task.checkend)} />
+        <Task task={task} icon={getTaskIcon(task.done)} />
       ) : (
         <p>Carregando</p>
       )}
@@ -54,9 +54,7 @@ const ViwerMoreOpitoinsTasks = ({ task, handleEdit }) => {
       </div>
       <p className="">
         Criada em:{" "}
-        <span>
-          {task ? getDate.formatDate(task?.createDate) : "carregando"}
-        </span>
+        <span>{task ? getDate.formatDate(task?.create_at) : "carregando"}</span>
       </p>
     </>
   );

@@ -9,32 +9,33 @@ const Task = ({ task, icon: Icon }) => {
 
   const handleToggleCheck = async (e) => {
     e.stopPropagation();
-    upDataTask("checkend", !task.checkend, task.id);
+    upDataTask("done", !task.done, task.id);
   };
 
   const handleToggleFavorit = async (e) => {
     e.stopPropagation();
-    upDataTask("favorit", !task.favorit, task.id);
+    upDataTask("favorite", !task.favorite, task.id);
   };
 
   const handleClick = () => {
     setGetIdTask(task.id);
-    console.log("Foi clicado");
   };
 
   return (
     <div
       onClick={handleClick}
-      className="bg-stone-800 text-white cursor-pointer hover:bg-stone-700 py-1.5 px-2 flex justify-between items-center gap-3.5"
+      className="flex min-w-0 cursor-pointer items-center justify-between gap-3.5 bg-stone-800 px-2 py-1.5 text-white hover:bg-stone-700"
     >
       <button onClick={handleToggleCheck}>
         <Icon className="cursor-pointer text-2xl" />
       </button>
-      <h3 className="flex-1 text-[18px] flex items-center">{task.taskName}</h3>
+      <h3 className="flex min-w-0 flex-1 items-center break-words text-[18px]">
+        {task.name}
+      </h3>
       <button onClick={handleToggleFavorit}>
         <MdOutlineStarPurple500
           className={`cursor-pointer text-2xl ${
-            task.favorit ? "text-amber-300" : "text-gray-400"
+            task.favorite ? "text-amber-300" : "text-gray-400"
           }`}
         />
       </button>

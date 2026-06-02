@@ -29,7 +29,7 @@ const ContainerBoxTask = () => {
       return tasks;
     }
 
-    return tasks.filter((el) => el.favorit);
+    return tasks.filter((el) => el.favorite);
   }, [filter, tasks]);
 
   const searchFilter = useMemo(() => {
@@ -38,12 +38,12 @@ const ContainerBoxTask = () => {
     }
 
     return filterTasks.filter((el) => {
-      return el.taskName.trim().toLowerCase().includes(searchValueInput);
+      return el.name.trim().toLowerCase().includes(searchValueInput);
     });
   }, [filterTasks, searchValueInput]);
 
   const sortInportante = [...searchFilter].sort(
-    (a, b) => Number(b.favorit) - Number(a.favorit),
+    (a, b) => Number(b.favorite) - Number(a.favorite),
   );
   const closeMenus = (e) => {
     e.stopPropagation();
@@ -60,14 +60,16 @@ const ContainerBoxTask = () => {
 
   return (
     <div
-      className={` p-2 h-full flex flex-1 flex-col justify-between relative ${
+      className={`relative flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden p-2 ${
         toggleLeftMenu && "blur-sm bg-stone-950/60 z-40"
       } `}
       onClick={closeMenus}
     >
       <HeaderContainerTasks />
-      <BoxTasks tasks={sortInportante} />
-      <BoxTasksDone tasks={sortInportante} />
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+        <BoxTasks tasks={sortInportante} />
+        <BoxTasksDone tasks={sortInportante} />
+      </div>
       <InputTasks />
     </div>
   );

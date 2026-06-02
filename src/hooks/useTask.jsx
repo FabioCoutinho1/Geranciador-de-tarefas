@@ -10,7 +10,7 @@ export const useTask = () => {
   const loadTask = async () => {
     try {
       const data = await taskServic.getTask();
-      setTasks(data);
+      setTasks(data.tasks);
     } catch (err) {
       alert("Não foi Possivel carregar as tarefas");
     }
@@ -32,6 +32,8 @@ export const useTask = () => {
       setTasks((prevTask) =>
         prevTask.map((el) => (el.id === id ? taskUpDate : el)),
       );
+      console.log("updateTask", taskUpDate);
+
       showMsg("Tarefa atualizada", "success");
     } catch (err) {
       showMsg("Erro ao atualizar a tarefa", "error");

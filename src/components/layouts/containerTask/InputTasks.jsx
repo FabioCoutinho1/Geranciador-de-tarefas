@@ -16,10 +16,10 @@ const InputTasks = () => {
     e.preventDefault();
 
     const name = inputValue.trim();
-    const date = getDate.dateSendServe();
+    // const date = getDate.dateSendServe();
 
     const isDuplicated = tasks.some(
-      (task) => task.taskName.toLowerCase() === name.toLowerCase(),
+      (task) => task.name.toLowerCase() === name.toLowerCase(),
     );
 
     if (isDuplicated) {
@@ -31,11 +31,10 @@ const InputTasks = () => {
     }
 
     const newTask = {
-      id: crypto.randomUUID(),
-      taskName: name,
-      checkend: false,
-      favorit: false,
-      createDate: date,
+      name: name,
+      done: false,
+      favorite: false,
+      // create_at: date,
     };
 
     createNewTask(newTask);
@@ -46,10 +45,10 @@ const InputTasks = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center bg-stone-800 text-white"
+      className="flex shrink-0 items-center bg-stone-800 text-white"
     >
       <input
-        className="flex-1 px-3 text-2xl py-2 border-none outline-none"
+        className="min-w-0 flex-1 border-none px-3 py-2 text-2xl outline-none"
         type="text"
         name="taskName"
         id="taskName"

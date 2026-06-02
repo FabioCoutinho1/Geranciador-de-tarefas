@@ -14,7 +14,7 @@ const RightMenu = () => {
   return (
     <aside
       className={` 
-        fixed top-0 right-0 h-full w-screen flex flex-col  text-white 
+        fixed top-0 right-0 flex h-dvh w-full flex-col text-white 
         p-2 bg-stone-900 transition-all duration-300 sm:w-64   ${
           toggleRightMenu ? "translate-x-0 " : "translate-x-full  "
         }`}

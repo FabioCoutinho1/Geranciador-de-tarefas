@@ -7,7 +7,7 @@ import Button from "../../ui/Button";
 const EditFormMenuRigth = ({ task }) => {
   const { setToggleEdit, tasks } = useContext(TaskContext);
   const inputRef = useRef();
-  const [inputValue, setInputValue] = useState(task.taskName || "");
+  const [inputValue, setInputValue] = useState(task.name || "");
   const { upDataTask } = useTask();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const EditFormMenuRigth = ({ task }) => {
     const name = inputValue.trim();
 
     const isDuplicated = tasks.some(
-      (task) => task.taskName.toLowerCase() === name.toLowerCase(),
+      (task) => task.name.toLowerCase() === name.toLowerCase(),
     );
 
     if (isDuplicated) {
@@ -30,11 +30,11 @@ const EditFormMenuRigth = ({ task }) => {
       return alert("A tarefa precisa ter um nome");
     }
 
-    if (inputValue == task.taskName) {
+    if (inputValue == task.name) {
       return alert("o nome nao pode ser o mesmo");
     }
 
-    upDataTask("taskName", name, task.id);
+    upDataTask("name", name, task.id);
 
     setToggleEdit(true);
   };

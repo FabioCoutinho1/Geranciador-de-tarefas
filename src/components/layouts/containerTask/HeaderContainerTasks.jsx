@@ -4,7 +4,7 @@ import { MdOutlineMenu } from "react-icons/md";
 import { getDate } from "../../../utils/getDate";
 
 const HeaderContainerTasks = () => {
-  const { setToggleLeftMenu } = useContext(TaskContext);
+  const { setToggleLeftMenu, userName } = useContext(TaskContext);
   const data = getDate.newDate();
 
   const handleToggleLeftMenu = (e) => {
@@ -13,13 +13,13 @@ const HeaderContainerTasks = () => {
   };
 
   return (
-    <header className="text-white flex mb-4">
+    <header className="mb-4 flex shrink-0 text-white">
       <div className=" cursor-default">
         <MdOutlineMenu
           onClick={handleToggleLeftMenu}
           className="cursor-pointer font-bold text-3xl"
         />
-        <h1 className="text-3xl font-bold">My Work</h1>
+        <h1 className="text-3xl font-bold">{userName}</h1>
         <p>{data}</p>
       </div>
     </header>

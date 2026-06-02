@@ -26,7 +26,7 @@ const LeftMenu = () => {
     <>
       <aside
         className={`
-        w-64 bg-stone-900 fixed top-0  left-0 h-screen
+        fixed top-0 left-0 h-dvh w-64 bg-stone-900
         transition-all duration-300 ease-in-out p-2 z-50
         ${toggleLeftMenu ? "translate-x-0" : "-translate-x-full"}
         `}
