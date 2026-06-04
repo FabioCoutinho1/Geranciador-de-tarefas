@@ -3,7 +3,8 @@ import AuthForm from "./AuthForm";
 import { useLogin } from "../../hooks/useLogin";
 
 function LoginUser() {
-  const { handleLogin } = useLogin();
+  const { handleLogin, hasError, handleInputChange, messageError } = useLogin();
+
   return (
     <AuthForm
       title="Login"
@@ -26,7 +27,10 @@ function LoginUser() {
           placeholder: "Sua senha",
         },
       ]}
+      isError={hasError}
       onSubmit={handleLogin}
+      onInputChange={handleInputChange}
+      messgeError={messageError}
     />
   );
 }

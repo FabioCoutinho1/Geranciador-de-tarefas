@@ -9,7 +9,10 @@ const AuthForm = ({
   footerText,
   footerLinkText,
   footerLinkTo,
+  isError,
   onSubmit,
+  onInputChange,
+  messgeError,
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,12 +44,14 @@ const AuthForm = ({
               {field.label}
             </label>
             <input
-              className="h-11 rounded-md border border-white/10 bg-stone-800/90 px-3 text-white outline-none transition placeholder:text-stone-500 focus:border-blue-300 focus:ring-2 focus:ring-blue-300/30"
+              className={`h-11 rounded-md border bg-stone-800/90 px-3  outline-none transition placeholder:text-stone-500 focus:border-blue-300 focus:ring-2 focus:ring-blue-300/30 ${isError ? "border-red-500 text-red-500" : "text-white border-white/10"}`}
               type={field.type}
               name={field.name}
               id={field.name}
               placeholder={field.placeholder}
+              onChange={onInputChange}
             />
+            {isError && <p className="text-xs text-red-400">{messgeError}</p>}
           </div>
         ))}
 

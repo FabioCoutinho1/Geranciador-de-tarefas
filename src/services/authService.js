@@ -7,10 +7,25 @@ export const authService = {
       },
       body: JSON.stringify(data),
     });
-    const resposeDate = await res.json();
+    const responseDate = await res.json();
+    if (!res.ok)
+      throw new Error(responseDate.message || "Credencias envalidas");
 
-    if (!res.ok) throw new Error(resposeDate.message || "Credencias envalidas");
+    return responseDate;
+  },
+ 
+  register: async (data) => {
+    const res = await fetch("http://localhost:3000/register", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const response = await res.json();
 
-    return resposeDate;
+    if (!res.ok) throw new Error(response.message || "Credencias envalidas");
+
+    return response;
   },
 };

@@ -1,11 +1,16 @@
 import { useContext } from "react";
 import { TaskContext } from "../../../context/TaskContext";
-import { MdClose, MdStarOutline, MdDensitySmall } from "react-icons/md";
+import {
+  MdClose,
+  MdStarOutline,
+  MdDensitySmall,
+  MdLogout,
+} from "react-icons/md";
 import FormSearch from "./FormSearch";
 import MoreOpitionsMenuLeft from "../../ui/MoreOpitionsMenuLeft";
 
 const LeftMenu = () => {
-  const { toggleLeftMenu, setFilter, setToggleLeftMenu } =
+  const { toggleLeftMenu, setFilter, setToggleLeftMenu, singOut } =
     useContext(TaskContext);
 
   const closLeftMenu = () => {
@@ -25,7 +30,7 @@ const LeftMenu = () => {
   return (
     <>
       <aside
-        className={`
+        className={` flex flex-col
         fixed top-0 left-0 h-dvh w-64 bg-stone-900
         transition-all duration-300 ease-in-out p-2 z-50
         ${toggleLeftMenu ? "translate-x-0" : "-translate-x-full"}
@@ -35,7 +40,7 @@ const LeftMenu = () => {
 
         <FormSearch />
 
-        <div>
+        <div className="flex-1">
           <MoreOpitionsMenuLeft
             icon={MdDensitySmall}
             opitionName={"Todas Tarefas"}
@@ -48,6 +53,17 @@ const LeftMenu = () => {
             colorIcon="text-pink-400"
             onClick={showInpontant}
           />
+        </div>
+
+        <div>
+          <button
+            onClick={() => singOut()}
+            className="w-full flex items-center text-2xl text-stone-50 duration-200 
+      gap-4 cursor-pointer hover:bg-stone-800 p-1 rounded-sm"
+          >
+            <MdLogout />
+            Sair
+          </button>
         </div>
       </aside>
     </>

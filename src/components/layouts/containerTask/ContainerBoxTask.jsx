@@ -11,10 +11,6 @@ const ContainerBoxTask = () => {
   const {
     toggleLeftMenu,
     setToggleLeftMenu,
-    setGetIdTask,
-    getIdTask,
-    toggleRightMenu,
-    setToggleRightMenu,
     searchValueInput,
   } = useContext(TaskContext);
 

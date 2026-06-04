@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router";
-import { useAuth } from "./useAuth";
-import { authService } from "../services/authService";
 import { useContext, useState } from "react";
+import { authService } from "../services/authService";
+import { useNavigate } from "react-router";
 import { TaskContext } from "../context/TaskContext";
+import { useAuth } from "./useAuth";
 
-export const useLogin = () => {
+export const useRegister = () => {
   const [hasError, setHasError] = useState(false);
   const [messageError, setMessageError] = useState("");
 
@@ -16,25 +16,21 @@ export const useLogin = () => {
     if (hasError) setHasError(false);
   };
 
-  const handleLogin = async (data) => {
+  const handleRegister = async (data) => {
     setHasError(false);
 
     try {
-      const response = await authService.login(data);
+      const response = await authService.register(data);
       singIn(response.token);
       navigate("/");
       setUserName(response.user.user_name);
     } catch (error) {
-      setMessageError(error.message);
-      setHasError(true);
+      if (error instanceof Error) {
+        setMessageError(error.message);
+        setHasError(true);
+      }
     }
   };
 
-  return {
-    handleLogin,
-    handleInputChange,
-    hasError,
-    setHasError,
-    messageError,
-  };
+  return { handleRegister, handleInputChange, hasError, messageError };
 };

@@ -1,7 +1,9 @@
 import React from "react";
 import AuthForm from "./AuthForm";
+import { useRegister } from "../../hooks/useRegister";
 
 const RegisterUser = () => {
+  const { handleRegister,  handleInputChange, hasError, messageError } = useRegister();
   return (
     <AuthForm
       title="Cadastro"
@@ -24,6 +26,10 @@ const RegisterUser = () => {
           placeholder: "Sua senha",
         },
       ]}
+      isError={hasError}
+      onSubmit={handleRegister}
+      onInputChange={handleInputChange}
+      messgeError={messageError}
     />
   );
 };
