@@ -54,7 +54,7 @@ const ViwerMoreOpitoinsTasks = ({ task, handleEdit }) => {
       </div>
       <p className="">
         Criada em:{" "}
-        <span>{task ? getDate.formatDate(task?.create_at) : "carregando"}</span>
+        <span>{task ? getDate.formatDate(task?.createAt) : "carregando"}</span>
       </p>
     </>
   );

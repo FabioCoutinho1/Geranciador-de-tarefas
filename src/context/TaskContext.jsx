@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import Toast from "../components/ui/Toast";
+import GlobalLoading from "../components/ui/GlobalLoading";
 
 export const TaskContext = createContext();
 
@@ -14,6 +15,17 @@ const TaskProvider = ({ children }) => {
   const [searchValueInput, setSearchVelueInput] = useState("");
   const [message, setMessage] = useState({ text: "", type: "" });
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [loadingCount, setLoadingCount] = useState(0);
+
+  const startLoading = useCallback(() => {
+    setLoadingCount((prevLoadingCount) => prevLoadingCount + 1);
+  }, []);
+
+  const stopLoading = useCallback(() => {
+    setLoadingCount((prevLoadingCount) => Math.max(prevLoadingCount - 1, 0));
+  }, []);
+
+  const isLoading = loadingCount > 0;
 
   useEffect(() => {
     const storageToken = localStorage.getItem("token");
@@ -61,9 +73,13 @@ const TaskProvider = ({ children }) => {
         isAuthenticated: !!token,
         userName,
         setUserName,
+        isLoading,
+        startLoading,
+        stopLoading,
       }}
     >
       {children}
+      <GlobalLoading isLoading={isLoading} />
       {message.text && <Toast text={message.text} type={message.type} />}
     </TaskContext.Provider>
   );

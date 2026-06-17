@@ -15,7 +15,7 @@ const RegisterUser = () => {
       fields={[
         {
           label: "Nome de usuário",
-          name: "user_name",
+          name: "userName",
           type: "text",
           placeholder: "Seu usuário",
         },
