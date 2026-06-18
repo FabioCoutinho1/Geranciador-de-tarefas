@@ -18,8 +18,6 @@ const request = async (url, options = {}) => {
     },
     
   });
-
-  console.log(res);
   
   const response = await res.json().catch(() => null);
 
