@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_URL_API;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const getAuthHeaders = () => {
   const token = localStorage.getItem("token");
@@ -16,9 +16,11 @@ const request = async (url, options = {}) => {
       ...getAuthHeaders(),
       ...options.headers,
     },
+    
   });
-
+  
   const response = await res.json().catch(() => null);
+
 
   if (!res.ok) {
     throw new Error(response?.message || "Erro ao processar a tarefa");
@@ -43,7 +45,7 @@ export const taskServic = {
 
   upDateTaskField: async (field, value, id) => {
     return request(`${BASE_URL}/task/${id}`, {
-      method: "PATCH",
+      method: "PUT",
       body: JSON.stringify({ [field]: value }),
     });
   },

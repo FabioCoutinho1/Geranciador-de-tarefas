@@ -18,7 +18,7 @@ const ContainerBoxTask = () => {
 
   useEffect(() => {
     loadTask();
-  }, []);
+  }, [loadTask]);
 
   const filterTasks = useMemo(() => {
     if (filter === "all") {

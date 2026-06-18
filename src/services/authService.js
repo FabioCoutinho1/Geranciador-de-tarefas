@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_URL_API;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const request = async (url, options = {}, messageError) => {
   const res = await fetch(url, {
@@ -16,7 +16,7 @@ const request = async (url, options = {}, messageError) => {
 export const authService = {
   login: async (data) => {
     return request(
-      `${BASE_URL}/login`,
+      `${BASE_URL}/user/login`,
       {
         method: "POST",
         headers: {
@@ -30,7 +30,7 @@ export const authService = {
 
   register: async (data) => {
     return request(
-      `${BASE_URL}/register`,
+      `${BASE_URL}/user/register`,
       {
         method: "POST",
         headers: {

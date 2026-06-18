@@ -1,20 +1,18 @@
-import { useContext, useState } from "react";
+import { useCallback, useContext, useRef } from "react";
 import { TaskContext } from "../context/TaskContext";
 
 export const useToast = () => {
   const { setMessage } = useContext(TaskContext);
-  const [timer, setTimer] = useState(null);
+  const timerRef = useRef(null);
 
-  const showMsg = (message, typeMsg = "success") => {
-    if (timer) clearTimeout(timer);
+  const showMsg = useCallback((message, typeMsg = "success") => {
+    if (timerRef.current) clearTimeout(timerRef.current);
     setMessage({ text: message, type: typeMsg });
 
-    const newTimer = setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       setMessage({ text: "", type: "" });
     }, 3000);
-
-    setTimer(newTimer);
-  };
+  }, [setMessage]);
 
   return { showMsg };
 };
