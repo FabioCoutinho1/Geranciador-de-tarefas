@@ -16,11 +16,15 @@ const request = async (url, options = {}) => {
       ...getAuthHeaders(),
       ...options.headers,
     },
-    
   });
-  
+
   const response = await res.json().catch(() => null);
 
+  if (res.status === 401) {
+    console.log("sem acesso");
+    
+    localStorage.removeItem("token");
+  }
 
   if (!res.ok) {
     throw new Error(response?.message || "Erro ao processar a tarefa");
