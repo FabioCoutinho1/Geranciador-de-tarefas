@@ -17,6 +17,11 @@ const LeftMenu = () => {
     setToggleLeftMenu(false);
   };
 
+  const logOut = () => {
+    singOut();
+    closLeftMenu();
+  };
+
   const showInpontant = () => {
     setFilter("inportante");
     setToggleLeftMenu(false);
@@ -57,7 +62,7 @@ const LeftMenu = () => {
 
         <div>
           <button
-            onClick={() => singOut()}
+            onClick={() => logOut()}
             className="w-full flex items-center text-2xl text-stone-50 duration-200 
       gap-4 cursor-pointer hover:bg-stone-800 p-1 rounded-sm"
           >
