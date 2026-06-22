@@ -4,21 +4,22 @@ import BoxTasksDone from "./BoxTasksDone";
 import InputTasks from "./InputTasks";
 import HeaderContainerTasks from "./HeaderContainerTasks";
 import { useTask } from "../../../hooks/useTask";
+import { useUser } from "../../../hooks/useUser";
 import { useContext } from "react";
 import { TaskContext } from "../../../context/TaskContext";
 
 const ContainerBoxTask = () => {
-  const {
-    toggleLeftMenu,
-    setToggleLeftMenu,
-    searchValueInput,
-  } = useContext(TaskContext);
+  const { toggleLeftMenu, setToggleLeftMenu, searchValueInput } =
+    useContext(TaskContext);
 
   const { loadTask, tasks, filter } = useTask();
+  const { getUserInfo } = useUser();
 
   useEffect(() => {
     loadTask();
+    getUserInfo();
   }, [loadTask]);
+
 
   const filterTasks = useMemo(() => {
     if (filter === "all") {

@@ -23,7 +23,7 @@ const LeftMenu = () => {
   };
 
   const showInpontant = () => {
-    setFilter("inportante");
+    setFilter("important");
     setToggleLeftMenu(false);
   };
 
