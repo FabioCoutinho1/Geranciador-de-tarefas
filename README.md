@@ -161,20 +161,11 @@ A aplicação consome uma API REST externa configurada por `VITE_BASE_URL`. Os e
 ├── vite.config.js
 └── vercel.json
 ```
-
-## Testes
-
-Não foi identificado script de testes automatizados no `package.json`.
-
 Para validar a qualidade estática do código, execute:
 
 ```bash
 npm run lint
 ```
-
-## Documentação da API
-
-Não foi identificada configuração de Swagger/OpenAPI neste repositório.
 
 ## Screenshots
 
