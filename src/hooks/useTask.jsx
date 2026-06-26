@@ -2,25 +2,28 @@ import { taskServic } from "../services/taskServices";
 import { useCallback, useContext } from "react";
 import { TaskContext } from "../context/TaskContext";
 import { useToast } from "./useToast";
+import { useAuthError } from "./useAuthError";
 
 export const useTask = () => {
   const { tasks, setTasks, filter, startLoading, stopLoading } =
     useContext(TaskContext);
   const { showMsg } = useToast();
+  const { handleAuthError } = useAuthError();
 
   const loadTask = useCallback(async () => {
     startLoading();
 
     try {
       const data = await taskServic.getTask();
-      console.log(data);
       setTasks(data);
     } catch (err) {
+      if (handleAuthError(err.status)) return;
+
       showMsg(err.message || "Erro ao carregar tarefas", "error");
     } finally {
       stopLoading();
     }
-  }, [setTasks, showMsg, startLoading, stopLoading]);
+  }, [handleAuthError, setTasks, showMsg, startLoading, stopLoading]);
 
   const createNewTask = async (name) => {
     startLoading();
@@ -30,6 +33,8 @@ export const useTask = () => {
       setTasks((prevTask) => [...prevTask, newTask]);
       showMsg("Tarefa adicionada com sucesso", "success");
     } catch (err) {
+      if (handleAuthError(err.status)) return;
+
       showMsg(err.message || "Erro ao criar nova tarefa", "error");
     } finally {
       stopLoading();
@@ -48,6 +53,8 @@ export const useTask = () => {
 
       showMsg("Tarefa atualizada", "success");
     } catch (err) {
+      if (handleAuthError(err.status)) return;
+
       showMsg(err.message || "Erro ao atualizar a tarefa", "error");
     } finally {
       stopLoading();
@@ -61,8 +68,10 @@ export const useTask = () => {
       await taskServic.Delete(id);
       setTasks((prevTask) => prevTask.filter((el) => el.id !== id));
       showMsg("Tarefa Apagada", "success");
-    } catch (error) {
-      showMsg(error.message || "Erro ao apagar a tarefa", "error");
+    } catch (err) {
+      if (handleAuthError(err.status)) return;
+
+      showMsg(err.message || "Erro ao apagar a tarefa", "error");
     } finally {
       stopLoading();
     }

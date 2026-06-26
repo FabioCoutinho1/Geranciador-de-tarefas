@@ -33,15 +33,15 @@ const TaskProvider = ({ children }) => {
     if (storageToken) setToken(storageToken);
   }, []);
 
-  const singIn = (token) => {
+  const singIn = useCallback((token) => {
     localStorage.setItem("token", token);
     setToken(token);
-  };
+  }, []);
 
-  const singOut = () => {
+  const singOut = useCallback(() => {
     localStorage.removeItem("token");
     setToken(null);
-  };
+  }, []);
 
   useEffect(() => {
     if (getIdTask !== null) {

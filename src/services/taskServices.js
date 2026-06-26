@@ -20,14 +20,10 @@ const request = async (url, options = {}) => {
 
   const response = await res.json().catch(() => null);
 
-  if (res.status === 401) {
-    console.log("sem acesso");
-    
-    localStorage.removeItem("token");
-  }
-
   if (!res.ok) {
-    throw new Error(response?.message || "Erro ao processar a tarefa");
+    const error = new Error(response?.message || "Erro ao processar a tarefa");
+    error.status = res.status;
+    throw error;
   }
 
   return response;
